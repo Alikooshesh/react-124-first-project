@@ -1,11 +1,13 @@
 
+import './name.css'
+
 function Name(props){
 
     const {name , age} = props
   
     return(
       <>
-        <p>my name is {name}, im {age}</p>
+        <p className="text-green">my name is {name}, im {age}</p>
         <p></p>
       </>
     )
