@@ -1,11 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
+import Name from './components/name/name'
 
 function App() {
+
+
   return (
     <div className="App">
+      <Name name="Reza" age={27}/>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
+        <Name name="ali" age="25"/>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
