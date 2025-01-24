@@ -4,16 +4,8 @@ import Name from './components/name/name'
 
 function App() {
 
-  function handleBtnClick(id){
-    alert(id)
-  }
-
   return (
-    <button onClick={()=>{
-      handleBtnClick("test")
-    }}>
-      click me!
-    </button>
+    <input onChange={(e)=> console.log(e.target.value)}/>
   );
 }
 
