@@ -2,25 +2,24 @@ import {useState} from 'react'
 import './App.css';
 import Decrease from './components/decrease';
 
+
 function App() {
 
-  const [number,setNumber] = useState(5)
-
-  function decrease(){
-    setNumber(number-1)
-    console.log(number)
-  }
-
-  function increase(){
-    setNumber(number+1)
-    console.log(number)
-  }
+  const [name , setName] = useState("test")
 
   return (
     <div>
-      <Decrease number={number} setNumber={setNumber}/>
-      <p>number is {number}</p>
-      <button onClick={increase}>+</button>
+      <label>name :</label>
+      <input value={name} onChange={(e)=> {
+        if(e.target.value.length<5){
+          setName(e.target.value)
+        }
+      }}/>
+      {name.length === 4 && <small>cant type more than 4 letters</small>}
+
+      <p>name is {name}</p>
+      
+      <input value="test"/>
     </div>
   );
 }
