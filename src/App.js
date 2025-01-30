@@ -1,11 +1,27 @@
-import logo from './logo.svg';
+import {useState} from 'react'
 import './App.css';
-import Name from './components/name/name'
+import Decrease from './components/decrease';
 
 function App() {
 
+  const [number,setNumber] = useState(5)
+
+  function decrease(){
+    setNumber(number-1)
+    console.log(number)
+  }
+
+  function increase(){
+    setNumber(number+1)
+    console.log(number)
+  }
+
   return (
-    <input onChange={(e)=> console.log(e.target.value)}/>
+    <div>
+      <Decrease number={number} setNumber={setNumber}/>
+      <p>number is {number}</p>
+      <button onClick={increase}>+</button>
+    </div>
   );
 }
 
