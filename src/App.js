@@ -1,34 +1,34 @@
-import {useEffect, useState} from 'react'
-import './App.css';
-import { FaBeer } from "react-icons/fa";
-import { BsAirplaneEnginesFill } from "react-icons/bs";
 
-const EMAIL_REGEX = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+import { useEffect, useReducer, useRef, useState } from 'react';
+import './App.css';
+
+function counterReducer(state,action){
+  console.log(action)
+  switch(action.type){
+    case "decrease":
+      return state - 1;
+    case "increase":
+      return state + 1;
+    case "decrease-2":
+      return state - 2;
+    case "increase-2":
+      return state + 2;
+    default :
+      return state;
+  }
+}
 
 function App() {
-  const [email,setEmail] = useState("")
-  const [err,setErr] = useState(true)
 
-  useEffect(()=>{
-    if(EMAIL_REGEX.test(email)){
-      setErr(false)
-    }else{
-      setErr(true)
-    }
-  },[email])
+  const [counter , counterDispatch] = useReducer(counterReducer,0)
 
-  return (
-    <div>
-      <FaBeer color='green'/>
-      
-
-      <div>
-      <input value={email} onChange={(e)=> setEmail(e.target.value)}/>
-      <BsAirplaneEnginesFill/>
-      </div>
-      <button disabled={err} onClick={()=> alert("it submitted")}>submit</button>
-    </div>
-  );
+  return(
+    <>
+      <button onClick={()=> counterDispatch({type : "decrease"})}>-</button>
+      <p>{counter}</p>
+      <button onClick={()=> counterDispatch({type : "increase"})}>+</button>
+    </>
+  )
 }
 
 export default App;
